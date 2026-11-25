@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>能源用量校核工作台</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true">能</div>
+    <div class="brand-title">能源用量校核</div>
+    <div class="top-meta"><span class="live-dot"></span>本地工作簿</div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div>
+        <div class="eyebrow">ENERGY DATA REVIEW</div>
+        <h1>用量校核工作台</h1>
+        <p>按能源类型复算标准煤与二氧化碳排放量，并核对工作簿登记值。</p>
+      </div>
+      <div class="summary" aria-live="polite">
+        <div><strong id="record-count">—</strong><span>条记录</span></div>
+        <div><strong id="issue-count">—</strong><span>待核对</span></div>
+        <div><strong id="tolerance">1%</strong><span>相对误差范围</span></div>
+      </div>
+    </section>
+
+    <section class="workspace" aria-label="能源记录工作台">
+      <div class="sheet-tabs" role="tablist" aria-label="年度工作表">
+        <button class="sheet-tab active" role="tab" aria-selected="true" data-year="2026">2026 年</button>
+        <button class="sheet-tab" role="tab" aria-selected="false" data-year="2025">2025 年</button>
+        <div class="source-label">来源：能源用量基础信息工作簿</div>
+      </div>
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <span class="group-icon">▤</span><span>按月份分组</span>
+          <span class="toolbar-separator"></span>
+          <span class="sort-caption">默认顺序：月份 → 三级单位 → 能源类型</span>
+        </div>
+        <label class="zero-toggle"><input id="show-zero" type="checkbox"><span>显示标准煤为零的能源类型</span></label>
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索单位或能源类型" aria-label="搜索单位或能源类型"></label>
+        <button id="refresh" class="refresh-btn" type="button"><span aria-hidden="true">↻</span> 刷新核算</button>
+      </div>
+      <div id="status" class="status" role="status">正在读取工作簿…</div>
+      <div class="table-viewport">
+        <table>
+          <thead><tr>
+            <th class="row-number">#</th><th><span class="th-filter"><span>月份</span><select id="month-filter" aria-label="按月份筛选"><option value="">全部</option></select></span></th><th><span class="th-filter"><span>三级单位</span><select id="unit-filter" aria-label="按三级单位筛选"><option value="">全部</option></select></span></th><th><span class="th-filter"><span>能源类型</span><select id="energy-filter" aria-label="按能源类型筛选"><option value="">全部</option></select></span></th>
+            <th>自用实物量</th><th>总实物量</th>
+            <th>自用标准煤<br><small>复算 / 表内</small></th><th>总标准煤<br><small>复算 / 表内</small></th>
+            <th>自用二氧化碳<br><small>复算 / 表内</small></th><th>总二氧化碳<br><small>复算 / 表内</small></th>
+            <th>校核状态</th>
+          </tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <div id="empty" class="empty-state" hidden>没有符合条件的记录</div>
+      </div>
+      <footer class="table-footer"><span id="footer-count">—</span><span>核算结果仅用于校核，不会写回原工作簿</span></footer>
+    </section>
+    <p class="footnote">标准煤和二氧化碳采用配置中的能源系数；工作簿中缺少单独计费方式字段的热力记录，按可对应的吉焦口径计算。</p>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

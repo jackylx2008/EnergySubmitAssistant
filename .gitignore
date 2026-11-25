@@ -1,0 +1,23 @@
+# 本地配置与凭据
+AI.env
+common.env
+.env
+*.env
+
+# 本地数据、输出与日志
+input/*
+!input/.gitkeep
+output/
+logs/
+
+# Python 环境与缓存
+.venv/
+.conda/
+__pycache__/
+*.py[cod]
+
+# 跨平台系统文件
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini

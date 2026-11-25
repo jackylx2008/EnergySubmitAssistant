@@ -1,0 +1,50 @@
+app:
+  host: 127.0.0.1
+  port: 8765
+  tolerance_relative: 0.01
+  input_path: input/2026-11-25_集团能源数据管理平台.xlsx
+
+display:
+  energy_type_order:
+    - 电力
+    - 汽油
+    - 柴油
+    - 天然气
+    - 热力
+    - 生活热水
+    - 自来水
+    - 中水
+    - 冷量
+  # 留空时按工作簿中单位首次出现顺序排序；需要固定组织顺序时在此填写名称。
+  unit_order: []
+
+calculation:
+  factors:
+    电力:
+      coal: 0.0001229
+      co2: 0.000604
+    汽油:
+      coal: 0.001074122
+      co2: 0.00261698
+    柴油:
+      coal: 0.001253106
+      co2: 0.002705
+    天然气:
+      coal: 0.00133
+      co2: 0.00216219
+    热力:
+      coal: 0.0341
+      co2: 0.11
+    生活热水:
+      coal: 0.0341
+      co2: 0.11
+  excluded_from_coal:
+    - 自来水
+    - 中水
+    - 冷量
+  excluded_from_co2:
+    - 热力
+    - 生活热水
+    - 自来水
+    - 中水
+    - 冷量
